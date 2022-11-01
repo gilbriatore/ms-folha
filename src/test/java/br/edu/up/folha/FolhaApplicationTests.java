@@ -1,4 +1,4 @@
-package payroll.folha;
+package br.edu.up.folha;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
