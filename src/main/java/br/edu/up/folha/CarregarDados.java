@@ -15,8 +15,8 @@ class CarregarDados {
   CommandLineRunner initDatabase(FuncionarioRepository repository) {
 
     return args -> {
-      log.info("Carregando " + repository.save(new Funcionario("Bilbo Baggins", "burglar")));
-      log.info("Carregando " + repository.save(new Funcionario("Frodo Baggins", "thief")));
+      log.info("Carregando " + repository.save(new Funcionario("Bilbo Baggins", Papel.Gerente)));
+      log.info("Carregando " + repository.save(new Funcionario("Frodo Baggins", Papel.Vendedor)));
     };
   }
 }

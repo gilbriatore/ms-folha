@@ -1,6 +1,7 @@
 package br.edu.up.folha;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,19 @@ class FuncionarioController {
 
   FuncionarioController(FuncionarioRepository repository) {
     this.repository = repository;
+  }
+
+  @GetMapping("/")
+  String getHome() {
+    return "Bem-vindo a microserviço Folha de Pagamento!";
+  }
+
+  @GetMapping("/funcionarios/{id}/salario")
+  String getSalario(@PathVariable Long id) {
+    Funcionario funcionario = repository.findById(id)
+        .orElseThrow(() -> new FuncionarioNotFoundException(id));
+    return "Funcionário " + funcionario.getNome()+ 
+           "  Salário de R$ " + funcionario.getSalario();
   }
 
 

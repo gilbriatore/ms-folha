@@ -5,20 +5,35 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 class Funcionario {
 
   private @Id @GeneratedValue Long id;
   private String nome;
-  private String papel;
+  private Papel papel;
+
+  @Transient
+  private Salario salario;
 
   Funcionario() {}
 
-  Funcionario(String nome, String papel) {
+  Funcionario(Salario salario) {
+    this.salario = salario;
+  }
+
+  Funcionario(String nome, Papel papel) {
 
     this.nome = nome;
     this.papel = papel;
+  }
+
+  public double getSalario(){
+    if (salario == null) {
+      return 0;
+    }
+    return salario.getValor();
   }
 
   public Long getId() {
@@ -29,7 +44,7 @@ class Funcionario {
     return this.nome;
   }
 
-  public String getPapel() {
+  public Papel getPapel() {
     return this.papel;
   }
 
@@ -41,7 +56,7 @@ class Funcionario {
     this.nome = nome;
   }
 
-  public void setPapel(String papel) {
+  public void setPapel(Papel papel) {
     this.papel = papel;
   }
 
