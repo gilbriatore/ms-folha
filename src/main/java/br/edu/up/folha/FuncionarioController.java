@@ -1,7 +1,6 @@
 package br.edu.up.folha;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +26,15 @@ class FuncionarioController {
 
   @GetMapping("/funcionarios/{id}/salario")
   String getSalario(@PathVariable Long id) {
-    Funcionario funcionario = repository.findById(id)
-        .orElseThrow(() -> new FuncionarioNotFoundException(id));
+    Funcionario funcionario = getFuncionarioById(id);    
     return "Funcionário " + funcionario.getNome()+ 
            ", Salário R$ " + funcionario.getSalario();
   }
 
+  Funcionario getFuncionarioById(Long id){
+    return repository.findById(id)
+    .orElseThrow(() -> new FuncionarioNotFoundException(id));
+  }
 
   // Aggregate root
   // tag::get-aggregate-root[]
@@ -51,9 +53,7 @@ class FuncionarioController {
   
   @GetMapping("/funcionarios/{id}")
   Funcionario getFuncionario(@PathVariable Long id) {
-    
-    return repository.findById(id)
-      .orElseThrow(() -> new FuncionarioNotFoundException(id));
+    return getFuncionarioById(id);
   }
 
   @PutMapping("/funcionarios/{id}")

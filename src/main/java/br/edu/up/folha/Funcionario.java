@@ -5,7 +5,6 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 class Funcionario {
@@ -14,9 +13,6 @@ class Funcionario {
   private String nome;
   private Papel papel;
 
-  @Transient
-  private Salario salario;
-
   Funcionario() {}
 
   Funcionario(String nome, Papel papel) {
@@ -24,17 +20,8 @@ class Funcionario {
     this.papel = papel;
   }
 
-  Funcionario(String nome, Papel papel, Salario salario) {
-    this.nome = nome;
-    this.papel = papel;
-    this.salario = salario;
-  }
-
   public double getSalario(){
-    if (salario == null) {
-      return 0;
-    }
-    return salario.getValor();
+    return 0;
   }
 
   public Long getId() {
