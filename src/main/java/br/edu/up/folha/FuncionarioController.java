@@ -30,7 +30,7 @@ class FuncionarioController {
     Funcionario funcionario = repository.findById(id)
         .orElseThrow(() -> new FuncionarioNotFoundException(id));
     return "Funcionário " + funcionario.getNome()+ 
-           "  Salário de R$ " + funcionario.getSalario();
+           ", Salário R$ " + funcionario.getSalario();
   }
 
 

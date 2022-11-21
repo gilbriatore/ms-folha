@@ -19,14 +19,15 @@ class Funcionario {
 
   Funcionario() {}
 
-  Funcionario(Salario salario) {
-    this.salario = salario;
-  }
-
   Funcionario(String nome, Papel papel) {
-
     this.nome = nome;
     this.papel = papel;
+  }
+
+  Funcionario(String nome, Papel papel, Salario salario) {
+    this.nome = nome;
+    this.papel = papel;
+    this.salario = salario;
   }
 
   public double getSalario(){
